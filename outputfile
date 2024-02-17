@@ -1,0 +1,19 @@
+module MODULE_NAME(input Q1, Q0, D, N,
+                   output T1, T0, OPEN, W);
+
+	wire w0, w1, w2, w3, w4, w5;
+
+	inv1$ g0(.out(w0), .in(Q0));
+	and2$ g1(.out(w1), .in0(w0), .in1(N));
+	and2$ g2(.out(OPEN), .in0(Q1), .in1(Q0));
+	and3$ g3(.out(w2), .in0(Q1), .in1(w0), .in2(D));
+	inv1$ g4(.out(w3), .in(Q1));
+	and2$ g5(.out(w4), .in0(w3), .in1(D));
+	and3$ g6(.out(w5), .in0(w3), .in1(Q0), .in2(N));
+	or2$ g7(.out(T1), .in0(w4), .in1(w5));
+	or3$ g8(.out(T0), .in0(w1), .in1(w2), .in2(w5));
+
+	assign W = w4;
+
+
+endmodule
